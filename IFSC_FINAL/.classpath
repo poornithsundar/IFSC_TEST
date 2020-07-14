@@ -12,5 +12,8 @@
 	<classpathentry kind="lib" path="C:/Users/Poornith/workspace/Final_IFSC/packages/poi-scratchpad-4.1.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Poornith/workspace/Final_IFSC/packages/slf4j.api-1.6.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="lib" path="C:/Users/Poornith/workspace/Final_IFSC/packages/commons-collections4-4.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Poornith/workspace/Final_IFSC/packages/commons-compress-1.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Poornith/workspace/Final_IFSC/packages/xmlbeans-3.1.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

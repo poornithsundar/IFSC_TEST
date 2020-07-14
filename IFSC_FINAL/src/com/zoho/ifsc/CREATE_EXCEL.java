@@ -20,11 +20,11 @@ public class CREATE_EXCEL {
 				for(int j=0;j<data.get(i).size();j++)
 				{
 					Cell c3 = r1.createCell(j);
-					if(j==2 && data.get(i).get(j)=="")
+					if(j==2 && (data.get(i).get(j)=="" || data.get(i).get(j).equalsIgnoreCase("NA") || data.get(i).get(j).equalsIgnoreCase("WAITING")))
 					{
 						c3.setCellValue("NA");
 					}
-					else if(j==2 && data.get(i).get(j).length()==12)
+					else if(j==2 && data.get(i).get(j).contains("E"))
 					{
 						Double value = Double.parseDouble(data.get(i).get(j));
 						c3.setCellValue(new BigDecimal(value).toString()); // Converting exponential cases into direct decimals
