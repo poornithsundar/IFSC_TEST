@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -16,6 +17,7 @@ public class GET_DATA {
 	//split records into lists
 	public static ArrayList<ArrayList<ArrayList<String>>> insert_records(String file_name, int sheet_start, ArrayList<String> headers)
 	{
+		ArrayList<String> invalid_entry = new ArrayList<>(Arrays.asList("NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA", "NA"));
 		ArrayList<String> header = new ArrayList<>();
 		ArrayList<ArrayList<String>> valid = new ArrayList<>();
 		ArrayList<ArrayList<String>> invalid = new ArrayList<>();
@@ -64,7 +66,7 @@ public class GET_DATA {
 					ArrayList<String> data = new ArrayList<>();
 					for (Cell cell : r)
 					{
-						String value = "";
+						String value = "NA";
 						switch (cell.getCellType())
 						{
 							case STRING:
@@ -106,19 +108,22 @@ public class GET_DATA {
 							data2.add("NA");
 						}
 					}
-					if (ifsc.trim().length() == 11 && !(IFSC_Getter.ifsc_check.contains(ifsc.trim())))
+					if(!data2.equals(invalid_entry))
 					{
-						valid.add(data2);
-						IFSC_Getter.ifsc_check.add(ifsc.trim());
-					}
-					else if (ifsc.trim().length() == 11)
-					{
-						IFSC_Getter.dup_count++;
-					}
-					else
-					{
-						System.out.println("********** Row index = "+j+". IFSC Error="+data2+" **********");
-						invalid.add(data2);
+						if (ifsc.trim().length() == 11 && !(IFSC_Getter.ifsc_check.contains(ifsc.trim())))
+						{
+							valid.add(data2);
+							IFSC_Getter.ifsc_check.add(ifsc.trim());
+						}
+						else if (ifsc.trim().length() == 11)
+						{
+							IFSC_Getter.dup_count++;
+						}
+						else
+						{
+							System.out.println("********** Row index = "+j+". IFSC Error="+data2+" **********");
+							invalid.add(data2);
+						}
 					}
 				}
 				i++;
